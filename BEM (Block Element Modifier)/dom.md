@@ -1,49 +1,61 @@
 RESEARCH - JavaScript Academy
-# The HTML DOM (Document Object Model)
-The **HTML DOM** model is constructed as a tree of **Objects:**
+ # BEM (Block Element Modifier)
 
-<img src="images/dom.png">
+ ## Introduction
 
-## Introduction
-The Document Object Model (DOM) is a programming API for HTML and XML documents. It defines the logical structure of documents and the way a document is accessed and manipulated. In the DOM specification, the term "document" is used in the broad sense - increasingly, XML is being used as a way of representing many different kinds of information that may be stored in diverse systems, and much of this would traditionally be seen as data rather than as documents. Nevertheless, XML presents this data as documents, and the DOM may be used to manage this data.
+ On smaller brochure sites, how you organize your styles isn’t usually a big concern. You get in there, write some CSS, or maybe even some SASS. You compile it all into a single stylesheet with SASS’s production settings, and then you aggregate it to get all the stylesheets from modules into a nice tidy package.
 
-With the Document Object Model, programmers can create and build documents, navigate their structure, and add, modify, or delete elements and content. Anything found in an HTML or XML document can be accessed, changed, deleted, or added using the Document Object Model, with a few exceptions - in particular, the DOM interfaces for the internal subset and external subset have not yet been specified.
+However, when it comes to larger, more complex projects, how you organize your code is the key to efficiency in at least these three ways: it affects how long it takes you to write code, how much of that code you’ll have to write and how much loading your browser will have to do. This becomes especially important when you’re working with teams of themers, and when high performance is essential.
 
-As a W3C specification, one important objective for the Document Object Model is to provide a standard programming interface that can be used in a wide variety of environments and applications. The Document Object Model can be used with any programming language. In order to provide precise, language-independent specification of the Document Object Model interfaces, we have chosen to define the specifications in OMG IDL, as defined in the CORBA 2.2 specification. In addition to the OMG IDL specification, we provide language bindings for Java and ECMAScript (an industry-standard scripting language based on JavaScript and JScript). Note: OMG IDL is used only as a language-independent and implementation-neutral way to specify interfaces. Various other IDLs could have been used; the use of OMG IDL does not imply a requirement to use a specific object binding runtime.
-## What the Document Object Model is?
-The Document Object Model (DOM) is a programming interface for HTML and XML documents. It represents the page so that programs can change the document structure, style, and content. The DOM represents the document as nodes and objects. That way, programming languages can connect to the page.
+This is also true for long-term projects with legacy code (read "How to Scale and Maintain Legacy CSS with Sass and SMACSS" — some nice SMACSS and BEM mixing in there).
 
-A Web page is a document. This document can be either displayed in the browser window or as the HTML source. But it is the same document in both cases. The Document Object Model (DOM) represents that same document so it can be manipulated. The DOM is an object-oriented representation of the web page, which can be modified with a scripting language such as JavaScript.
+## Methodologies
 
-The W3C DOM and WHATWG DOM standards are implemented in most modern browsers. Many browsers extend the standard, so care must be exercised when using them on the web where documents may be accessed by various browsers with different DOMs.
-The Document Object Model is a programming API for documents. The object model itself closely resembles the structure of the documents it models. For instance, consider this table, taken from an HTML document:
+There are plenty of methodologies out there aiming to reduce the CSS footprint, organize cooperation among programmers and maintain large CSS codebases. This is obvious in large projects like Twitter, Facebook and Github, but other projects often grow into some “Huge CSS file” state pretty quickly.
 
-      <TABLE>
-      <ROWS> 
-      <TR> 
-      <TD>Shady Grove</TD>
-      <TD>Aeolian</TD> 
-      </TR> 
-      <TR>
-      <TD>Over the River, Charlie</TD>
-      <TD>Dorian</TD> 
-      </TR> 
-      </ROWS>
-      </TABLE>
-    
-The Document Object Model represents this table like this:
+OOCSS
+Separating container and content with CSS “objects”
 
-<img src="images/dom2.png">
+SMACSS
+Style-guide to write your CSS with five categories for CSS rules
 
-The name "Document Object Model" was chosen because it is an "object model" is used in the traditional object oriented design sense: documents are modeled using objects, and the model encompasses not only the structure of a document, but also the behavior of a document and the objects of which it is composed. In other words, the nodes in the above diagram do not represent a data structure, they represent objects, which have functions and identity. As an object model, the Document Object Model identifies:
+SUITCSS
+Structured class names and meaningful hyphens
+AtomicBreaking down styles into atomic, or indivisible, pieces
 
-- the interfaces and objects used to represent and manipulate a document
-- the semantics of these interfaces and objects - including both behavior and attributes
-- the relationships and collaborations among these interfaces and objects
-## DOM and JavaScript
-The short example above, like nearly all of the examples in this reference, is JavaScript. That is to say, it's written in JavaScript, but it uses the DOM to access the document and its elements. The DOM is not a programming language, but without it, the JavaScript language wouldn't have any model or notion of web pages, HTML documents, XML documents, and their component parts (e.g. elements). Every element in a document—the document as a whole, the head, tables within the document, table headers, text within the table cells—is part of the document object model for that document, so they can all be accessed and manipulated using the DOM and a scripting language like JavaScript.
+## Why BEM over the others?
+No matter what methodology you choose to use in your projects, you will benefit from the advantages of more structured CSS and UI. Some styles are less strict and more flexible, while others are easier to understand and adapt in a team.
 
-In the beginning, JavaScript and the DOM were tightly intertwined, but eventually, they evolved into separate entities. The page content is stored in the DOM and may be accessed and manipulated via JavaScript, so that we may write this approximative equation:
+The reason I choose BEM over other methodologies comes down to this: it is less confusing than the other methods (i.e. SMACSS) but still provides us the good architecture we want (i.e. OOCSS) and with a recognizable terminology.
 
-API = DOM + JavaScript
+## Blocks, Elements and Modifiers
+<img src="images/first.png">
 
+<img src="images/second.png">
+
+### Under the hood
+
+Let’s look how one particular element on a page can be implemented in BEM. We will take button from GitHub:
+
+<img src="images/third.png">
+
+We can have a normal button for usual cases, and two more states for different ones. Because we style blocks by class selectors with BEM, we can implement them using any tags we want (button, a or even div). The naming rules tell us to use block--modifier-value syntax.
+
+<img src="images/fourth.png">
+
+## Benifits
+
+### Modularity
+Block styles are never dependent on other elements on a page, so you will never experience problems from cascading.
+
+You also get the ability to transfer blocks from your finished projects to new ones.
+
+### Reusability
+
+Composing independent blocks in different ways, and reusing them intelligently, reduces the amount of CSS code that you will have to maintain.
+
+With a set of style guidelines in place, you can build a library of blocks, making your CSS super effective.
+
+### Structure
+
+BEM methodology gives your CSS code a solid structure that remains simple and easy to understand.
